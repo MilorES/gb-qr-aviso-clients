@@ -2,6 +2,7 @@ using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
+using System.Diagnostics;
 using System.Windows;
 using System.Windows.Input;
 using System.Windows.Interop;
@@ -43,6 +44,9 @@ public partial class MainWindow : Window, INotifyPropertyChanged
         try
         {
             _settings = SettingsStore.LoadOrCreate();
+            foreach (var alert in AlertHistoryStore.Load(_settings.MaximumAlerts))
+                Alerts.Add(alert);
+
             _listener = new MqttAlertListener(_settings, OnIncomingAlert, SetConnectionStatus);
             _listener.Start();
             WindowState = WindowState.Maximized;
@@ -79,6 +83,7 @@ public partial class MainWindow : Window, INotifyPropertyChanged
             while (_settings is not null && Alerts.Count > _settings.MaximumAlerts)
                 Alerts.RemoveAt(Alerts.Count - 1);
 
+            SaveAlertHistory();
             OnPropertyChanged(nameof(AlertCountText));
             BringAlertToFront();
         });
@@ -127,8 +132,29 @@ public partial class MainWindow : Window, INotifyPropertyChanged
     private void AcknowledgeAndMinimize(AlertItem item)
     {
         item.IsNewest = false;
+        SaveAlertHistory();
         Topmost = false;
         WindowState = WindowState.Minimized;
+    }
+
+    private void SaveAlertHistory()
+    {
+        if (_settings is not null)
+            AlertHistoryStore.Save(Alerts, _settings.MaximumAlerts);
+    }
+
+    private void OpenSettings_Click(object sender, RoutedEventArgs e)
+    {
+        try
+        {
+            Process.Start(new ProcessStartInfo(SettingsStore.SettingsDirectory) { UseShellExecute = true });
+        }
+        catch (Exception ex)
+        {
+            MessageBox.Show(
+                $"No se pudo abrir la carpeta de configuración.\n\n{ex.Message}\n\nCarpeta: {SettingsStore.SettingsDirectory}",
+                "Configuración de GB Avisos", MessageBoxButton.OK, MessageBoxImage.Error);
+        }
     }
 
     private async void Window_Closing(object? sender, CancelEventArgs e)

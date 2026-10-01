@@ -8,15 +8,17 @@ public static class SettingsStore
 {
     private static readonly JsonSerializerOptions JsonOptions = new() { WriteIndented = true };
 
-    public static string SettingsPath { get; } = Path.Combine(
+    public static string SettingsDirectory { get; } = Path.Combine(
         Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData),
-        "GrupoBreston", "GbQrAvisosCliente", "settings.json");
+        "GrupoBreston", "GbQrAvisosCliente");
+
+    public static string SettingsPath { get; } = Path.Combine(SettingsDirectory, "settings.json");
 
     public static AppSettings LoadOrCreate()
     {
         if (!File.Exists(SettingsPath))
         {
-            Directory.CreateDirectory(Path.GetDirectoryName(SettingsPath)!);
+            Directory.CreateDirectory(SettingsDirectory);
             File.WriteAllText(SettingsPath, JsonSerializer.Serialize(new AppSettings(), JsonOptions));
         }
 

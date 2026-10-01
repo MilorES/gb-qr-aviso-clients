@@ -1,0 +1,10 @@
+{
+  "BrokerHost": "mqtt.example.invalid",
+  "BrokerPort": 1883,
+  "Username": "",
+  "Password": "",
+  "Locals": [
+    "Breston_Figueres"
+  ],
+  "MaximumAlerts": 500
+}

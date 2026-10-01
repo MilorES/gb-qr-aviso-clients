@@ -11,6 +11,8 @@
 settings.json
 **/settings.json
 settings.*.json
+**/alerts.json
+**/alerts.json.tmp
 .env
 .env.*
 !.env.example
