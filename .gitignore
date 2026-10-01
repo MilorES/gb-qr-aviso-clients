@@ -1,0 +1,27 @@
+.vs/
+**/bin/
+**/obj/
+**/publish/
+*.user
+*.suo
+.dotnet-home/
+.nuget-packages/
+
+# Configuración local y credenciales
+settings.json
+**/settings.json
+settings.*.json
+.env
+.env.*
+!.env.example
+secrets/
+**/secrets/
+credentials/
+**/credentials/
+*.secret
+*.credentials
+*.key
+*.p12
+*.pfx
+id_rsa
+id_ed25519
