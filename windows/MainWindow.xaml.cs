@@ -46,6 +46,7 @@ public partial class MainWindow : Window, INotifyPropertyChanged
             _settings = SettingsStore.LoadOrCreate();
             foreach (var alert in AlertHistoryStore.Load(_settings.MaximumAlerts))
                 Alerts.Add(alert);
+            OnPropertyChanged(nameof(AlertCountText));
 
             _listener = new MqttAlertListener(_settings, OnIncomingAlert, SetConnectionStatus);
             _listener.Start();
