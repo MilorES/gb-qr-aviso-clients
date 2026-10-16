@@ -29,22 +29,18 @@
     <Grid Margin="36">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
 
-        <Grid Grid.Row="0" Margin="0,0,0,22">
+        <Grid Grid.Row="0" Margin="0,0,0,12">
             <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
                 <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="Auto" />
-                <ColumnDefinition Width="Auto" />
             </Grid.ColumnDefinitions>
-            <StackPanel>
-                <TextBlock Text="GB AVISOS" FontSize="16" FontWeight="Bold" Foreground="{StaticResource BrandGreen}" />
-                <TextBlock Text="Avisos del local" FontSize="36" FontWeight="SemiBold" Margin="0,5,0,0" />
-            </StackPanel>
-            <Border Grid.Column="1" CornerRadius="22" Padding="18,10" Background="#E8F2ED" VerticalAlignment="Center">
+            <Border Grid.Column="0" CornerRadius="22" Padding="18,10" Background="#E8F2ED" VerticalAlignment="Center"
+                    HorizontalAlignment="Left">
                 <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
                     <Ellipse Width="12" Height="12" Fill="{Binding StatusBrush}" Margin="0,0,10,0" />
                     <TextBlock Text="{Binding StatusText}" FontSize="16" FontWeight="SemiBold" VerticalAlignment="Center" />
@@ -58,16 +54,7 @@
             </Button>
         </Grid>
 
-        <Grid Grid.Row="1" Margin="0,0,0,8">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="260" />
-                <ColumnDefinition Width="*" />
-            </Grid.ColumnDefinitions>
-            <TextBlock Text="RECIBIDO" FontSize="13" FontWeight="Bold" Foreground="{StaticResource MutedText}" HorizontalAlignment="Center" />
-            <TextBlock Grid.Column="1" Text="AVISO" FontSize="13" FontWeight="Bold" Foreground="{StaticResource MutedText}" HorizontalAlignment="Center" />
-        </Grid>
-
-        <Border Grid.Row="2" Background="White" BorderBrush="#DCE7E1" BorderThickness="1" CornerRadius="18" ClipToBounds="True">
+        <Border Grid.Row="1" Background="White" BorderBrush="#DCE7E1" BorderThickness="1" CornerRadius="18" ClipToBounds="True">
             <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled">
                 <ItemsControl ItemsSource="{Binding Alerts}">
                     <ItemsControl.ItemTemplate>
@@ -93,7 +80,7 @@
             </ScrollViewer>
         </Border>
 
-        <Grid Grid.Row="3" Margin="4,14,4,0">
+        <Grid Grid.Row="2" Margin="4,14,4,0">
             <TextBlock Text="Los avisos más recientes aparecen arriba" FontSize="14" Foreground="{StaticResource MutedText}" VerticalAlignment="Center" />
             <TextBlock Text="{Binding AlertCountText}" FontSize="14" Foreground="{StaticResource MutedText}" HorizontalAlignment="Right" VerticalAlignment="Center" />
         </Grid>
