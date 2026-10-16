@@ -5,13 +5,10 @@
         WindowState="Maximized" Topmost="False" CanResize="False"
         Background="#F4F7F5" Foreground="#16372E"
         Opened="Window_Opened" Closed="Window_Closed" PointerPressed="Window_PointerPressed">
-  <Grid Margin="36" RowDefinitions="Auto,Auto,*,Auto">
-    <Grid Grid.Row="0" Margin="0,0,0,22" ColumnDefinitions="*,Auto,Auto">
-      <StackPanel Spacing="5">
-        <TextBlock Text="GB AVISOS" FontSize="16" FontWeight="Bold" Foreground="#176348" />
-        <TextBlock Text="Avisos del local" FontSize="36" FontWeight="SemiBold" />
-      </StackPanel>
-      <Border Grid.Column="1" CornerRadius="22" Padding="18,10" Background="#E8F2ED" VerticalAlignment="Center">
+  <Grid Margin="36" RowDefinitions="Auto,*,Auto">
+    <Grid Grid.Row="0" Margin="0,0,0,12" ColumnDefinitions="Auto,*,Auto">
+      <Border Grid.Column="0" CornerRadius="22" Padding="18,10" Background="#E8F2ED" VerticalAlignment="Center"
+              HorizontalAlignment="Left">
         <StackPanel Orientation="Horizontal" Spacing="10" VerticalAlignment="Center">
           <Ellipse Width="12" Height="12" Fill="{Binding StatusBrush}" />
           <TextBlock Text="{Binding StatusText}" FontSize="16" FontWeight="SemiBold" VerticalAlignment="Center" />
@@ -25,12 +22,7 @@
       </Button>
     </Grid>
 
-    <Grid Grid.Row="1" Margin="0,0,0,8" ColumnDefinitions="260,*">
-      <TextBlock Text="RECIBIDO" FontSize="13" FontWeight="Bold" Foreground="#698078" HorizontalAlignment="Center" />
-      <TextBlock Grid.Column="1" Text="AVISO" FontSize="13" FontWeight="Bold" Foreground="#698078" HorizontalAlignment="Center" />
-    </Grid>
-
-    <Border Grid.Row="2" Background="White" BorderBrush="#DCE7E1" BorderThickness="1" CornerRadius="18" ClipToBounds="True">
+    <Border Grid.Row="1" Background="White" BorderBrush="#DCE7E1" BorderThickness="1" CornerRadius="18" ClipToBounds="True">
       <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled">
         <ItemsControl ItemsSource="{Binding Alerts}">
           <ItemsControl.ItemTemplate>
@@ -51,7 +43,7 @@
       </ScrollViewer>
     </Border>
 
-    <Grid Grid.Row="3" Margin="4,14,4,0" ColumnDefinitions="*,Auto">
+    <Grid Grid.Row="2" Margin="4,14,4,0" ColumnDefinitions="*,Auto">
       <TextBlock Text="Los avisos más recientes aparecen arriba" FontSize="14" Foreground="#698078" VerticalAlignment="Center" />
       <TextBlock Grid.Column="1" Text="{Binding AlertCountText}" FontSize="14" Foreground="#698078" VerticalAlignment="Center" />
     </Grid>
