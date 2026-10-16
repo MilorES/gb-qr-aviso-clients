@@ -23,6 +23,7 @@ credentials/
 *.secret
 *.credentials
 *.key
+*.pem
 *.p12
 *.pfx
 id_rsa
