@@ -52,7 +52,7 @@ public sealed class MqttAlertListener : IAsyncDisposable
                     await _client.SubscribeAsync(subscribe, token);
                 }
 
-                _onStatus("Conectado · " + string.Join(", ", _settings.Locals), true);
+                _onStatus("Conectado · " + string.Join(", ", _settings.Locals.Select(local => local.Replace('_', ' '))), true);
                 while (_client.IsConnected && !token.IsCancellationRequested)
                     await Task.Delay(TimeSpan.FromSeconds(1), token);
             }
